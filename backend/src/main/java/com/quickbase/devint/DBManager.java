@@ -1,10 +1,20 @@
 package com.quickbase.devint;
 
-import java.sql.Connection;
-
-/**
- * Created by ckeswani on 9/16/15.
- */
 public interface DBManager {
-    public Connection getConnection();
+    public void open();
+    public void close();
+    
+    public boolean isOpen();
+    
+    public boolean requiresRefresh();
+    
+    public void selectCountry(String countryName);
+    
+    public boolean isDataPresentForSelection();
+    public Integer getPopulationOfSelection();
+    
+    public static DBManager createDataBaseConnection() 
+    {
+        return new DBManagerImpl();
+    }
 }
